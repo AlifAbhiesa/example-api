@@ -6,6 +6,23 @@ Init database
 - Masuk ke folder projek dan ketikkan perintah <b>php Migrate.php</b> untuk migrasi database
 - Jika ingin menambahkan data dummy ketikkan perintah <b>php SeedData.php</b>
 <br>
+
+<h1> POSTMAN </h1>
+
+<h2> Membuat transaksi </h2>
+Menggunakan postman, pastikan memberikkan parameter seperti yang sudah ditentukan
+![image](https://i.ibb.co/JnHFP1g/image.png)
+
+<h2> Mengupdate status pembayaran </h2>
+<br>
+Ketikkan perintah
+<br>
+<i> php TransactionUpdate.php </i>
+<p> berikan masukkan Reference_id status (PAID/FAILED) </p>
+<p> Contoh REF_123 PAID </p>
+<p> Notes : Menggunakan spasi, input dipisahkan berdasarkan spasi
+
+<h2> PHP CLI </h2>
 <h2> Membuat Transaksi </h2>
 <br>
 ketikkan perintah
@@ -16,6 +33,8 @@ ketikkan perintah
 <p> Contoh 120,Balon,1000,virtual_account,Alif,2 </p>
 <p> Notes : Tidak menggunakan spasi, input dipisahkan berdasarkan koma
 <br>
+  
+
 <h2> Mengupdate status pembayaran </h2>
 <br>
 Ketikkan perintah
@@ -24,6 +43,7 @@ Ketikkan perintah
 <p> berikan masukkan Reference_id status (PAID/FAILED) </p>
 <p> Contoh REF_123 PAID </p>
 <p> Notes : Menggunakan spasi, input dipisahkan berdasarkan spasi
+  
 
 <h2> Mengambil data transaksi </h2>
 <br>
