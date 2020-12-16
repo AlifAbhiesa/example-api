@@ -11,9 +11,11 @@ Init database
 
 <h2> Membuat transaksi </h2>
 Menggunakan postman, pastikan memberikkan parameter seperti yang sudah ditentukan
+<p> End point : /create </p>
 <img src="https://i.ibb.co/JnHFP1g/image.png" alt="image" border="0">
 
 <h2> Mengambil data transaksi </h2>
+<p> End point : /get </p>
 <img src="https://i.ibb.co/N9Nt0mH/image.png" alt="image" border="0">
 
 <h2> Mengupdate status pembayaran </h2>
