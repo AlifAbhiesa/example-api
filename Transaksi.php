@@ -63,6 +63,7 @@ class Transaksi{
     }
 
     public function update(){
+        $this->conn->begin_transaction();
         $sql = "UPDATE t_orders SET payment_status = '$this->status' WHERE reference_id = '$this->reference_id'";
 
         if ($this->conn->query($sql) === TRUE) {
@@ -72,6 +73,8 @@ class Transaksi{
         } else {
             echo "Error: " . $sql . " " . $this->conn->error;
         }
+
+        $this->conn->commit();
     }
 
     // get some transaction
