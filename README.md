@@ -11,7 +11,10 @@ Init database
 
 <h2> Membuat transaksi </h2>
 Menggunakan postman, pastikan memberikkan parameter seperti yang sudah ditentukan
-![image](https://i.ibb.co/JnHFP1g/image.png)
+<img src="https://i.ibb.co/JnHFP1g/image.png" alt="image" border="0">
+
+<h2> Mengambil data transaksi </h2>
+<img src="https://i.ibb.co/N9Nt0mH/image.png" alt="image" border="0">
 
 <h2> Mengupdate status pembayaran </h2>
 <br>
