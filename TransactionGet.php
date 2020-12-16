@@ -11,10 +11,18 @@
     $result = explode(",",trim(fgets($data)));
 
     // contoh input
-    // 120,Balon,1000,virtual_account,Alif,2
-    $tr->reference_id = $result[0];
-    $tr->merchant_id  = $result[1];
-
-    $tr->get();
+    // REF_123,2
+    try{
+        if(count($result) < 2){
+            throw new Exception('Input tidak lengkap!');
+        }
+        $tr->reference_id = $result[0];
+        $tr->merchant_id  = $result[1];
+    
+        $tr->get();
+    }catch(Exception $e){
+        echo $e;
+    }
+    
 
 ?>

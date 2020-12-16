@@ -9,10 +9,20 @@
     // input dipisahkan spasi
     $result = explode(" ",trim(fgets($data)));
 
-    // contoh input
-    // REF_1234 PAID/FAILED
-    $tr->reference_id = $result[0];
-    $tr->status  = $result[1];
+    try{
+        if(count($result) < 2){
+            throw new Exception('Input tidak lengkap!');
+        }
+
+        // contoh input
+        // REF_1234 PAID/FAILED
+        $tr->reference_id = $result[0];
+        $tr->status  = $result[1];
+        
+        $tr->update();
+    }catch(Exception $e){
+        echo $e;
+    }
+
     
-    $tr->update();
 ?>

@@ -19,9 +19,14 @@ class Transaksi{
         $this->conn = $connection->main();
     }
     public function create(){
-        
+        // ref id with random number and ref prefix
         $reference_id = 'REF_'.rand(1000,9999);
-        $number_va = rand(5555555555,9999999999);
+        if($this->payment_type == 'virtual_account'){
+            $number_va = rand(5555555555,9999999999);
+        }else{
+            $number_va = NULL;
+        }
+        
         $sql = "INSERT INTO t_orders (invoice_id, item_name, amount, payment_type,
         customer_name, merchant_id, reference_id, va_number, payment_status)
         VALUES ('$this->invoice_id', '$this->item_name', '$this->amount', '$this->payment_type',
@@ -30,6 +35,7 @@ class Transaksi{
 
         if ($this->conn->query($sql) === TRUE) {
             echo "Transaction created!\n";
+            // show amount if transaction type is VA
             if($this->payment_type == 'virtual_account'){
                 $data = array(
                     'references_id' => $reference_id,
@@ -93,6 +99,7 @@ class Transaksi{
         
     }
 
+    // always create log after create / update transaction
     public function create_log($reference_id, $status){
         $sql = "INSERT INTO t_log_orders (reference_id, payment_status)
         VALUES ('$reference_id', '$status')";

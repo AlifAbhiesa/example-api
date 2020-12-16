@@ -12,6 +12,7 @@ class Seeder{
     }
 
     public function Seed(){
+        // data transaksi
         $data_transaksi = array(
             array(
                 'id' => 1000,
@@ -57,8 +58,10 @@ class Seeder{
             VALUES ('".$data_transaksi[$i]['invoice_id']."','".$data_transaksi[$i]['item_name']."','".$data_transaksi[$i]['amount']."','".$data_transaksi[$i]['payment_type']."',
             '".$data_transaksi[$i]['customer_name']."','".$data_transaksi[$i]['merchant_id']."','".$data_transaksi[$i]['reference_id']."','".$data_transaksi[$i]['va_number']."','".$data_transaksi[$i]['payment_status']."')";
 
+            //create dummy data
             if ($this->conn->query($sql) === TRUE) {
                 $transaksi = new Transaksi();
+                // create log after create order
                 $transaksi->create_log($data_transaksi[$i]['reference_id'], $data_transaksi[$i]['payment_status']);
             }else{
                 echo "Error: " . $sql . " " . $this->conn->error;
