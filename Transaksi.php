@@ -36,7 +36,6 @@ class Transaksi{
         'PENDING')";
 
         if ($this->conn->query($sql) === TRUE) {
-            echo "Transaction created!\n";
             // show amount if transaction type is VA
             if($this->payment_type == 'virtual_account'){
                 $data = array(
@@ -52,10 +51,11 @@ class Transaksi{
                     'status' => 'PENDING',
                 );
             }
-            
-            echo json_encode($data)."\n";
-            $this->create_log($reference_id, 'PENDING');
             $this->conn->commit();
+
+            $this->create_log($reference_id, 'PENDING');
+            echo json_encode($data);
+            
         } else {
             echo "Error: " . $sql . " " . $this->conn->error;
         }
@@ -82,25 +82,38 @@ class Transaksi{
         
         $sql = "SELECT * FROM t_orders where reference_id = '$this->reference_id' AND merchant_id = '$this->merchant_id'";
         $result = $this->conn->query($sql);
+        $transaction = [];
 
         if(!empty($result->num_rows > 0)){
             while($row = $result->fetch_assoc()) {
-                echo $row["reference_id"]. " - " . $row["invoice_id"]. " - ".$row['payment_status']."\n";
+                array_push($transaction, $row);
             }
-            echo "History transaksi\n";
 
-            $sql = "SELECT * FROM t_log_orders";
-            $result = $this->conn->query($sql);
+            $sql = "SELECT * FROM t_log_orders where reference_id = '$this->reference_id'";
+            $hist = $this->conn->query($sql);
+            $history = [];
             
-            if ($result->num_rows > 0) {
+            if ($hist->num_rows > 0) {
               // output data of each row
-              while($row = $result->fetch_assoc()) {
-                echo $row["payment_status"]. "  On " . $row["created_at"]. "\n";
+              while($row2 = $hist->fetch_assoc()) {
+                array_push($history, $row2);
               }
             }
+
+            $data = array(
+                'transaction' => $transaction,
+                'history' => $history
+            );
+
+            echo json_encode($data);
+
             
         }else{
-            echo "Tidak ada transaksi\n";
+            $data = array(
+                'message' => 'Tidak ada transaksi '
+            );
+
+            echo json_encode($data);
         }
         
     }
@@ -115,7 +128,12 @@ class Transaksi{
             echo "Log created!\n";
             $this->conn->commit();
         } else {
-            echo "Error: " . $sql . " " . $this->conn->error;
+
+            $data = array(
+                'message' => 'error '.$this->conn->error
+            );
+
+            echo json_encode($data);
         }
         
     }
