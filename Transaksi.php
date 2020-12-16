@@ -80,7 +80,7 @@ class Transaksi{
     // get some transaction
     public function get(){
         
-        $sql = "SELECT * FROM t_orders where reference_id = '$this->reference_id' AND merchant_id = '$this->merchant_id'";
+        $sql = "SELECT reference_id,invoice_id,payment_status FROM t_orders where reference_id = '$this->reference_id' AND merchant_id = '$this->merchant_id'";
         $result = $this->conn->query($sql);
         $transaction = [];
 
@@ -125,7 +125,7 @@ class Transaksi{
         VALUES ('$reference_id', '$status')";
 
         if ($this->conn->query($sql) === TRUE) {
-            echo "Log created!\n";
+            // echo "Log created!\n";
             $this->conn->commit();
         } else {
 
