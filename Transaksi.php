@@ -27,6 +27,8 @@ class Transaksi{
             $number_va = NULL;
         }
         
+        $this->conn->begin_transaction();
+
         $sql = "INSERT INTO t_orders (invoice_id, item_name, amount, payment_type,
         customer_name, merchant_id, reference_id, va_number, payment_status)
         VALUES ('$this->invoice_id', '$this->item_name', '$this->amount', '$this->payment_type',
@@ -50,9 +52,10 @@ class Transaksi{
                     'status' => 'PENDING',
                 );
             }
-
+            
             echo json_encode($data)."\n";
             $this->create_log($reference_id, 'PENDING');
+            $this->conn->commit();
         } else {
             echo "Error: " . $sql . " " . $this->conn->error;
         }
@@ -101,14 +104,17 @@ class Transaksi{
 
     // always create log after create / update transaction
     public function create_log($reference_id, $status){
+        $this->conn->begin_transaction();
         $sql = "INSERT INTO t_log_orders (reference_id, payment_status)
         VALUES ('$reference_id', '$status')";
 
         if ($this->conn->query($sql) === TRUE) {
             echo "Log created!\n";
+            $this->conn->commit();
         } else {
             echo "Error: " . $sql . " " . $this->conn->error;
         }
+        
     }
 }
     
