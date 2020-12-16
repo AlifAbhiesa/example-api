@@ -1,0 +1,98 @@
+{
+	"info": {
+		"_postman_id": "fa225ead-b0b6-488f-b8f8-675aa4ca24be",
+		"name": "Detik",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "invoice_id",
+							"value": "1001",
+							"type": "text"
+						},
+						{
+							"key": "item_name",
+							"value": "Pulpen",
+							"type": "text"
+						},
+						{
+							"key": "amount",
+							"value": "2000",
+							"type": "text"
+						},
+						{
+							"key": "payment_type",
+							"value": "virtual_account",
+							"type": "text"
+						},
+						{
+							"key": "customer_name",
+							"value": "Alif",
+							"type": "text"
+						},
+						{
+							"key": "merchant_id",
+							"value": "12",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://detik.dev/create",
+					"protocol": "https",
+					"host": [
+						"detik",
+						"dev"
+					],
+					"path": [
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "reference_id",
+							"value": "REF_5686",
+							"type": "text"
+						},
+						{
+							"key": "merchant_id",
+							"value": "12",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://detik.dev/get",
+					"protocol": "https",
+					"host": [
+						"detik",
+						"dev"
+					],
+					"path": [
+						"get"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
