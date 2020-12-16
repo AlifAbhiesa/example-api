@@ -25,6 +25,7 @@ Ketikkan perintah
 <i> php TransactionUpdate.php </i>
 <p> berikan masukkan Reference_id status (PAID/FAILED) </p>
 <p> Contoh REF_123 PAID </p>
+<img src="https://i.ibb.co/861Xcmy/image.png" alt="image" border="0">
 <p> Notes : Menggunakan spasi, input dipisahkan berdasarkan spasi
 
 <h2> PHP CLI </h2>
